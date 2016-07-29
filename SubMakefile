@@ -1,0 +1,16 @@
+SOURCES_TO_ENCRYPT=$(wildcard *.hs)
+SOURCES_TO_ENCRYPT_TARGETS=$(SOURCES_TO_ENCRYPT:.hs=.hs.gpg)
+
+SOURCES_ENC=$(wildcard *.hs.gpg)
+SOURCES=$(SOURCES_ENC:.hs.gpg=.hs)
+
+%.hs.gpg: %.hs
+	echo 'no spoiler' | gpg --batch --passphrase-fd 0 -c $<
+
+%.hs: %.hs.gpg
+	gpg -o $@ --decrypt $< 
+
+solution : $(SOURCES)
+	ghc -o solution -O2 $(SOURCES)
+
+encrypt: $(SOURCES_TO_ENCRYPT_TARGETS)
