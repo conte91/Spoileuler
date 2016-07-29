@@ -16,10 +16,13 @@ _As the passphrase implies, don't spoil yourself with solutions to problems you 
 Simply use the top-level Makefile. 
 
 Targets:
+
   `make n`: builds one problem by number
+
   `make`: builds all the problems -- you will have to enter the passphrase maaaany times!
 
   `make n_encrypt`: reencrypt one source file, useful if you want to propose patches!
+
   `make encrypt`: reencrypt everything
 
 
