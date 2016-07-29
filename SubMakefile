@@ -5,7 +5,7 @@ SOURCES_ENC=$(wildcard *.hs.gpg)
 SOURCES=$(SOURCES_ENC:.hs.gpg=.hs)
 
 %.hs.gpg: %.hs
-	test -f $@ && rm $@
+	test -f $@ && rm $@ || echo
 	echo 'no spoiler' | gpg --batch --passphrase-fd 0 -c $<
 
 %.hs: %.hs.gpg
