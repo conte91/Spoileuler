@@ -3,10 +3,11 @@ ENCFOLDERS=$(FOLDERS:=_encrypt)
 
 TARGETS=$(foreach dir,$(FOLDERS),$(dir)/$(dir))
 
+all: $(FOLDERS)
+	echo Built all
+
 $(ENCFOLDERS):
 	cd $(@:_encrypt=) && make -f ../SubMakefile encrypt
-
-	
 
 $(FOLDERS): 
 	echo 'Building problem #$@...'
@@ -14,9 +15,8 @@ $(FOLDERS):
 
 .PHONY: $(FOLDERS) $(ENCFOLDERS) clean
 
+encrypt: $(ENCFOLDERS)
+
 clean:
 	rm */solution 
-all: $(FOLDERS)
-	echo Built all
 
-encrypt: $(ENCFOLDERS)
