@@ -12,6 +12,6 @@ SOURCES=$(SOURCES_ENC:.hs.gpg=.hs)
 	gpg -o $@ --decrypt $< 
 
 solution : $(SOURCES)
-	ghc -o solution -O2 $(SOURCES)
+	ghc -o solution -O2 -dynamic $(SOURCES)
 
 encrypt: $(SOURCES_TO_ENCRYPT_TARGETS)
